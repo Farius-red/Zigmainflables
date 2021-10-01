@@ -1,0 +1,48 @@
+ <!-- Productos es variable con coneccion-->
+<div class="row container shadow-lg primer rounded-star">
+
+  <div class="card m-4"*ngFor="let item of
+    productosSinfireb" style="width: 18rem;">
+    <div class="card-header">
+
+      <h3 class="card-title text-center">
+        <!-- {{item.NombreProducto}} -->
+      </h3>
+    </div>
+
+    <!-- [src]="item.imagen" [alt]="item.nombreProducto" -->
+    <img class="card-img-top"
+      style="width: 18rem; height: 300px;">
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <h2 class="card-title">aqui precio</h2>
+        </li>
+        <li class="list-group-item">
+
+          <p class="card-text">aqui descripcion</p>
+
+        </li>
+        <li class="list-group-item">
+
+          <p class="card-text">medidas</p>
+        </li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <div class="container d-flex justify-content-around">
+        <button type="button" (click)="addCard(item.id)" class="btn btn-primary
+          btn-sm">Agregar</button>
+
+        <a type="button" [routerLink]="['/Zigmainflables/tienda',item.id]"
+          routerLinkActive="router-link-active" class="btn btn-succes btn-sm">ver
+          Detalle</a>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
