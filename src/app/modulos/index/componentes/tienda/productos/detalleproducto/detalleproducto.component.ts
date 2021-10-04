@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ProductosService } from 'src/app/core/servicios/productos/productos.service';
 import { Producto } from 'src/app/modelos/producto.model';
 
 @Component({
@@ -11,15 +12,21 @@ export class DetalleproductoComponent implements OnInit {
 
   productsinB!: Producto;
   producto: any;
-  constructor(private route: ActivatedRoute,) { }
+  constructor(private route: ActivatedRoute, private productosService: ProductosService) { }
 
   ngOnInit(): void {
+    this.fetchProduct('11');
   }
 
   fetchProduct(id: string) {
-  
+    this.route.params.subscribe(
+      (params: Params) => {
+        const idProduct = params.id;
+        const proc = this.productosService.getProductID(idProduct);
+        console.log(proc);
 
-    console.log(this.productsinB);
+      })
 
   }
+
 }
