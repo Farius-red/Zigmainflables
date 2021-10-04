@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Producto } from 'src/app/modelos/producto.model';
+import { ProductosService } from 'src/app/core/servicios/productos/productos.service';
+import { Producto, ProductosBD } from 'src/app/modelos/producto.model';
 
 @Component({
   selector: 'app-productos',
@@ -9,16 +10,24 @@ import { Producto } from 'src/app/modelos/producto.model';
 export class ProductosComponent implements OnInit {
 
   @Output() productoCliked: EventEmitter<any> = new EventEmitter();
-  productos!: Producto[];
-  productosSinfireb!: Producto[];
-  constructor() { }
+  productos: ProductosBD[] = [];
+  productosSinfireb: Producto[] = [];
+  constructor(private productoService: ProductosService) { }
 
   ngOnInit(): void {
+    this.getAllProducts();
   }
 
   addCard(id: string) {
-    console.log('agrege al carrito');
-    this.productoCliked.emit();
+
+    this.productoCliked.emit(id);
+
+  }
+
+  getAllProducts() {
+    this.productosSinfireb = this.productoService.getProductos();
+    this.productoService.getProductosBD()
+      .subscribe(res => this.productos = res);
   }
 
 }
