@@ -1,3 +1,7 @@
+ 
+  
 [context.deploy-preview]
   publish = "dist/Zigmainflables"
-command = "CI = npm run build"
+  
+  [build]
+command = "CI= npm run build"
