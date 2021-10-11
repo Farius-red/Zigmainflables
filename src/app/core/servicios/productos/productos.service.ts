@@ -1,6 +1,8 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Categoria, Producto, ProductosBD } from 'src/app/modelos/producto.model';
 
 
@@ -10,6 +12,9 @@ import { Categoria, Producto, ProductosBD } from 'src/app/modelos/producto.model
 export class ProductosService {
 
 
+  apiurl = "https://localhost:44384";
+  controladorul ="/api/producto";
+
   ProductosBD: ProductosBD[] = [];
 
   categorias: Categoria[] = [
@@ -17,6 +22,8 @@ export class ProductosService {
     { id: '2', nombreCategoria: 'Publicitarios' },
     { id: '3', nombreCategoria: 'Skydancers' },
   ];
+
+
 
   productosSinBase: Producto[] = [
     {
@@ -181,7 +188,22 @@ export class ProductosService {
     },
   ];
 
-  constructor(private http: HttpClient) { }
+
+  ProductosForm = this.fb.group({
+    id: null,
+    descripcion:  [null, Validators.required],
+    nombre:  ['', Validators.required],
+    color: [null, Validators.required],
+    medidas: null,
+    precio: [null, Validators.required],
+    
+    imagen: [null,  Validators.required],
+  });
+
+
+
+
+  constructor(private http: HttpClient , private fb : FormBuilder) { }
 
 
   getProductos() {
@@ -205,6 +227,13 @@ export class ProductosService {
   getproductosBDid(id: string) {
 
     return this.http.get<ProductosBD[]>(`https://platzi-store.herokuapp.com/products/${id}`)
+  }
+
+  createProductos(product: Producto): Observable<Producto>{
+    
+     return this.http.post<Producto>(this.apiurl + this.controladorul, product);
+     
+      
   }
 
 }
