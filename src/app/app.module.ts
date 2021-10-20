@@ -1,4 +1,3 @@
-import { MaterialModule } from './modulos/material/material.module';
 
 import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
