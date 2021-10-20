@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Categoria, Producto, ProductosBD } from 'src/app/modelos/producto.model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -199,12 +200,24 @@ export class ProductosService {
   }
 
   getProductosBD() {
-    return this.http.get<ProductosBD[]>('https://platzi-store.herokuapp.com/products/');
+    return this.http.get<ProductosBD[]>(`${environment.urlApi}/products/`);
   }
 
   getproductosBDid(id: string) {
 
-    return this.http.get<ProductosBD[]>(`https://platzi-store.herokuapp.com/products/${id}`)
+    return this.http.get<ProductosBD>(`${environment.urlApi}/products/${id}`)
   }
 
+
+  crearProducto(product: ProductosBD) {
+    return this.http.post(`${environment.urlApi}/products/`, product);
+  }
+
+  actulizarProductp(id: String, changes: Partial<ProductosBD>) {
+    return this.http.put(`${environment.urlApi}/products/${id}`, changes,);
+  }
+
+  eliminarProducto(id: string) {
+    return this.http.delete(`${environment.urlApi}/products/${id}`)
+  }
 }
