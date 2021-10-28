@@ -74,14 +74,12 @@
         
       </div>
 
-      <div class="row">
+      <div class=" form-group row">
         <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput   placeholder="nombre producto" formControlName="imagen">
-            <mat-error *ngIf="productosForm.controls['imagen'].hasError('required')">
-              imagen  <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+         
+            <input (change)="capturarImagen($event)" placeholder="Suba una imagen" type="file"  formControlName="imagen">
+            
+         
         </div>
         
       </div>
@@ -92,6 +90,8 @@
       <button mat-raised-button color="primary" [disabled]="productosForm.invalid"  type="submit">Submit</button>
     </mat-card-actions>
   </mat-card>
+
+  
 </form>
 
 </div>

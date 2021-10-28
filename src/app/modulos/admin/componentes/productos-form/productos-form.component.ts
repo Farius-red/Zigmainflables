@@ -10,18 +10,23 @@ import { ProductosService } from "src/app/core/servicios/productos/productos.ser
 })
 export class ProductosFormComponent {
   productosForm!: FormGroup;
-
+public archivos: any =[]
   constructor(private productosService: ProductosService) {}
 
   ngOnInit(): void {
     this.productosForm = this.productosService.ProductosForm;
   }
 
+capturarImagen(event: any){
+  const  archivoCapturado = event.target.files[0];
+  this.archivos.push(archivoCapturado);
+}
+
   crearProducto(): void {
     debugger;
       if (this.productosForm.valid) {
         const producto: Producto[] = [];
-
+ console.log(this.productosForm.get('imagen')?.value)
         producto.push(this.productosForm.value);
         if (producto.length > 0) {
           producto.forEach((element) => {
