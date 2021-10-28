@@ -1,3 +1,4 @@
+import { PedidosComponent } from './componentes/pedidos/pedidos.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -20,7 +21,7 @@ const routes: Routes = [
 
       { path: 'admin/products', component: ProductosFormComponent },
 
-
+      { path: 'admin/pedidos', component: PedidosComponent },
 
     ],
 
