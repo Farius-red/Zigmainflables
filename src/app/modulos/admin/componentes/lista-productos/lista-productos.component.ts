@@ -1,4 +1,4 @@
-import { ProductosBD } from 'src/app/modelos/producto.model';
+import { Producto } from 'src/app/modelos/producto.model';
 import { ProductosService } from 'src/app/core/servicios/productos/productos.service';
 import { AfterViewInit, Component } from '@angular/core';
 
@@ -10,10 +10,9 @@ import { AfterViewInit, Component } from '@angular/core';
 export class ListaProductosComponent implements AfterViewInit {
 
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'title', 'precio', 'acciones'];
+  displayedColumns = ['id', 'nombre', 'precioVenta', 'acciones'];
 
-  productos: ProductosBD[] = [];
+  productos: Producto[] = [];
 
   constructor(private productosService: ProductosService) {
 

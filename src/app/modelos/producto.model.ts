@@ -1,20 +1,28 @@
 export interface Producto {
+    id: number;
+    descripcion: string;
+    nombre: string;
+    color: string;
+    medidas: string;
+    rutaImagen: string;
+    precioFab: number;
+    precioVenta: number;
+
+}
+
+export interface ProductoConver {
+
+
     id: string;
     descripcion: string;
     nombre: string;
     color: string;
     medidas: string;
-    precio: number;
-    imagen: string;
-}
+    rutaImagen: string;
+    precioFab: number;
+    precioVenta: number;
 
-export interface ProductosBD {
 
-    id: string
-    image: string,
-    title: string,
-    price: number,
-    description: string,
 }
 export interface Categoria {
     id: string;

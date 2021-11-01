@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-  urlApi: ' https://platzi-store.herokuapp.com'
+  urlApi: ' http://localhost:8080'
 };
 
 /*

@@ -1,6 +1,8 @@
+
+
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductosService } from 'src/app/core/servicios/productos/productos.service';
-import { Producto, ProductosBD } from 'src/app/modelos/producto.model';
+import {ProductoConver } from 'src/app/modelos/producto.model';
 
 @Component({
   selector: 'app-productos',
@@ -9,9 +11,12 @@ import { Producto, ProductosBD } from 'src/app/modelos/producto.model';
 })
 export class ProductosComponent implements OnInit {
 
-  @Output() productoCliked: EventEmitter<any> = new EventEmitter();
-  productos: ProductosBD[] = [];
-  productosSinfireb: Producto[] = [];
+
+  @Output() productoCliked: EventEmitter<string> = new EventEmitter();
+
+  
+  productos: ProductoConver[] = [];
+  productosSinfireb: ProductoConver[] = [];
   constructor(private productoService: ProductosService) { }
 
   ngOnInit(): void {
@@ -25,9 +30,12 @@ export class ProductosComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.productosSinfireb = this.productoService.getProductos();
+
+    this.productosSinfireb = this.productoService.trasformAenteros(this.productoService.getProductos());
+
     this.productoService.getProductosBD()
-      .subscribe(res => this.productos = res);
+      .subscribe(res => this.productos = this.productoService.trasformAenteros(res));
   }
+
 
 }

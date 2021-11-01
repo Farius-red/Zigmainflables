@@ -22,16 +22,14 @@ import { ListaProductosComponent } from './componentes/lista-productos/lista-pro
     DaskboardComponent,
     PedidosComponent,
     ListaProductosComponent,
-    dakboard
+
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
+   
 
   ]
 })

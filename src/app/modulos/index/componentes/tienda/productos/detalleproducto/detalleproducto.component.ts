@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductosService } from 'src/app/core/servicios/productos/productos.service';
-import { Producto, ProductosBD } from 'src/app/modelos/producto.model';
+import { Producto, } from 'src/app/modelos/producto.model';
 
 @Component({
   selector: 'app-detalleproducto',
@@ -10,7 +10,7 @@ import { Producto, ProductosBD } from 'src/app/modelos/producto.model';
 })
 export class DetalleproductoComponent implements OnInit {
 
-  productsinB!: ProductosBD;
+  productsinB!: Producto;
   producto: any;
   constructor(private route: ActivatedRoute, private productosService: ProductosService) { }
 
@@ -24,6 +24,7 @@ export class DetalleproductoComponent implements OnInit {
   }
 
   fetchProduct(id: string) {
+
     this.productosService.getproductosBDid(id).subscribe(product => {
 
       this.productsinB = product;
