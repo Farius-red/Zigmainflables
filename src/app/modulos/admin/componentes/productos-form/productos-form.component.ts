@@ -1,27 +1,24 @@
+
+import { Producto } from "src/app/modelos/producto.model";
+import { Component } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ProductosService } from "src/app/core/servicios/productos/productos.service";
+
 import { ProductosBD } from './../../../../modelos/producto.model';
 import { ProductosService } from './../../../../core/servicios/productos/productos.service';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
+
 @Component({
-  selector: 'app-productos-form',
-  templateUrl: './productos-form.component.html',
-  styleUrls: ['./productos-form.component.css']
+  selector: "app-productos-form",
+  templateUrl: "./productos-form.component.html",
+  styleUrls: ["./productos-form.component.css"],
 })
 export class ProductosFormComponent {
-  addressForm = this.fb.group({
-    company: null,
-    firstName: [null, Validators.required],
-    lastName: [null, Validators.required],
-    address: [null, Validators.required],
-    address2: null,
-    city: [null, Validators.required],
-    state: [null, Validators.required],
-    postalCode: [null, Validators.compose([
-      Validators.required, Validators.minLength(5), Validators.maxLength(5)])
-    ],
-    shipping: ['free', Validators.required]
-  });
+  productosForm!: FormGroup;
+public archivos: any =[]
+
 
   hasUnitNumber = false;
 
@@ -89,8 +86,41 @@ export class ProductosFormComponent {
 
   constructor(private fb: FormBuilder, private productoSevice: ProductosService) { }
 
-  onSubmit(): void {
-    alert('Thanks!');
+ngOnInit(): void {
+    this.productosForm = this.productosService.ProductosForm;
+  }
+
+
+capturarImagen(event: any){
+  const  archivoCapturado = event.target.files[0];
+  this.archivos.push(archivoCapturado);
+}
+
+  crearProducto(): void {
+    debugger;
+      if (this.productosForm.valid) {
+        const producto: Producto[] = [];
+ console.log(this.productosForm.get('imagen')?.value)
+        producto.push(this.productosForm.value);
+        if (producto.length > 0) {
+          producto.forEach((element) => {
+            const product: Producto = {
+              id: element.id,
+              color: element.color,
+              descripcion: element.descripcion,
+              nombre: element.nombre,
+              medidas: element.medidas,
+              imagen: element.imagen,
+              precio: element.precio,
+            };
+            this.productosService.createProductos(product).subscribe((e) => {
+              console.log('se creo con exito');
+              this.productosForm.reset();
+            });
+          });
+        }
+      }
+     
   }
 
   crearProducto() {

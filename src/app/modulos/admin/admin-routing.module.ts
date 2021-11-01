@@ -1,3 +1,4 @@
+import { PedidosComponent } from './componentes/pedidos/pedidos.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListaProductosComponent } from './componentes/lista-productos/lista-productos.component';
@@ -19,6 +20,9 @@ const routes: Routes = [
         pathMatch: 'prefix',
       },
 
+      { path: 'admin/products', component: ProductosFormComponent },
+
+      { path: 'admin/pedidos', component: PedidosComponent },
 
       { path: 'products', component: ProductosFormComponent },
 
