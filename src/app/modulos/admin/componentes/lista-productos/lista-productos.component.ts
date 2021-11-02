@@ -1,4 +1,4 @@
-import { Producto } from 'src/app/modelos/producto.model';
+import { Producto, ProductoConver } from 'src/app/modelos/producto.model';
 import { ProductosService } from 'src/app/core/servicios/productos/productos.service';
 import { AfterViewInit, Component } from '@angular/core';
 
@@ -10,9 +10,9 @@ import { AfterViewInit, Component } from '@angular/core';
 export class ListaProductosComponent implements AfterViewInit {
 
 
-  displayedColumns = ['id', 'nombre', 'precioVenta', 'acciones'];
+  displayedColumns = ['id', 'nombre', 'precioVenta', 'precioFabrica', 'acciones'];
 
-  productos: Producto[] = [];
+  productos: ProductoConver[] = [];
 
   constructor(private productosService: ProductosService) {
 
@@ -27,8 +27,8 @@ export class ListaProductosComponent implements AfterViewInit {
 
   listarProductos() {
     this.productosService.getProductosBD().subscribe(product => {
-      this.productos = product;
-      console.log(this.productos);
+      this.productos = this.productosService.trasformAenteros(product);
+
     });
   }
 

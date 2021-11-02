@@ -13,7 +13,7 @@ export interface Producto {
 export interface ProductoConver {
 
 
-    id: string;
+    id?: string;
     descripcion: string;
     nombre: string;
     color: string;

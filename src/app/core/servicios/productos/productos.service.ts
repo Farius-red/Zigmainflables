@@ -242,10 +242,14 @@ export class ProductosService {
 
   getproductosBDid(id: string) {
 
-    return this.http.get<Producto>(`${environment.urlApi}http://localhost:8080/producto/productoId/${id}`)
+    return this.http.get<Producto>(`${environment.urlApi}/producto/productoId/${id}`)
   }
 
 
+  productoByName(nombre: string) {
+    return this.http.get<Producto>(`${environment.urlApi}/producto/productoNombre/${nombre}`)
+    
+  }
 
 
   crearProducto(product: Producto) {

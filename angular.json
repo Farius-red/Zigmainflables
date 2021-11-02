@@ -37,7 +37,8 @@
               "src/styles.css",
               "src/assets/admin/css/admin/daskboard.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/font-awesome/css/font-awesome.min.css"
+              "src/assets/font-awesome/css/font-awesome.min.css",
+               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
              "src/assets/admin/js/jquery-3.3.1.min.js",
